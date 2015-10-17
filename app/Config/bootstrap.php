@@ -114,3 +114,9 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+// Load common settings
+Configure::load('conf_common');
+
+// Load local settings
+Configure::load('conf_local');
