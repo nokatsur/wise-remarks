@@ -9,12 +9,12 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 /**
- * Components
+ * admin_login method
  *
- * @var array
  */
-	public $components = array('Paginator');
+	public function admin_login() {
 
+	}
 /**
  * admin_index method
  *
