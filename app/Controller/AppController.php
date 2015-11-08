@@ -33,7 +33,56 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $components = array(
+		'Auth' => array(
+			'authenticate' => array(
+				'Form' => array(
+					'userModel' => 'User',
+					'fields' => array(
+						'username' => 'username',
+						'password' => 'password',
+					),
+				),
+			),
+			'loginAction' => array(
+				'controller' => 'users',
+				'action' => 'login',
+				'admin' => true,
+			),
+			'logoutRedirect' => array(
+				'controller' => 'users',
+				'action' => 'login',
+				'admin' => true,
+			),
+			'loginRedirect' => array(
+				'controller' => 'users',
+				'action' => 'index',
+				'admin' => true,
+			)
+		),
+		'flash' => array(
+			'element' => null,
+			'params' => array(),
+			'key' => 'flash',
+		),
+		'Flash',
 		'Paginator',
+		'RequestHandler',
 		'DebugKit.Toolbar'
 	);
+
+	public $helpers = array('Html', 'Form', 'Session');
+
+/**
+ * Run before all controller's action
+ *
+ * @return void
+ */
+	public function beforeFilter() {
+		// Set layout
+//		if (isset($this->params['plugin']) && $this->params['plugin'] === 'acl') {
+//			$this->layout = 'default';
+//		} elseif (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
+//			$this->layout = 'admin';
+//		}
+	}
 }

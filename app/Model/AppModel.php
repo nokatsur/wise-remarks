@@ -30,4 +30,11 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+/**
+ * Limit find methos's coverage
+ *
+ * @var int
+ */
+	public $recursive = -1;
 }

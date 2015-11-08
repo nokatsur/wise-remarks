@@ -1,18 +1,13 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('AuthComponent', 'Controller/Component');
+
 /**
  * User Model
  *
  * @property Remark $Remark
  */
 class User extends AppModel {
-
-/**
- * Use database config
- *
- * @var string
- */
-	public $useDbConfig = 'local';
 
 /**
  * Display field
@@ -28,9 +23,13 @@ class User extends AppModel {
  */
 	public $validate = array(
 		'username' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => '入力が必須です。',
+			),
 			'maxLength' => array(
-				'rule' => array('maxLength'),
-				//'message' => 'Your custom message here',
+				'rule' => array('maxLength', 128),
+				'message' => array('%d文字以内で入力してください。', 128),
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -38,9 +37,27 @@ class User extends AppModel {
 			),
 		),
 		'password' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => '入力が必須です。',
+			),
 			'maxLength' => array(
-				'rule' => array('maxLength'),
-				//'message' => 'Your custom message here',
+				'rule' => array('maxLength', 1024),
+				'message' => array('%d文字以内で入力してください。', 1024),
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'email' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => '入力が必須です。',
+			),
+			'email' => array(
+				'rule' => array('email'),
+				'message' => array('Eメールアドレスをご確認ください。'),
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -72,4 +89,15 @@ class User extends AppModel {
 		)
 	);
 
+/**
+ * 保存前にパスワードの暗号化
+ *
+ * @param array $options オプション
+ * @return bool
+ */
+	public function beforeSave($options = array()) {
+		parent::beforeSave($options);
+		$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+		return true;
+	}
 }

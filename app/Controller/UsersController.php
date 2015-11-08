@@ -11,10 +11,27 @@ class UsersController extends AppController {
 /**
  * admin_login method
  *
+ * @return void
  */
 	public function admin_login() {
-
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				return $this->redirect($this->Auth->redirect());
+			} else {
+				return $this->Flash->set(_('Your username or password was incorrect.'));
+			}
+		}
 	}
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+	public function admin_logout() {
+		$this->redirect($this->Auth->logout());
+	}
+
 /**
  * admin_index method
  *
@@ -49,7 +66,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				return $this->flash(__('The user has been saved.'), array('action' => 'index'));
+				return $this->flash(__('The user has been saved.'), array('admin' => true, 'action' => 'index'));
 			}
 		}
 	}
@@ -67,7 +84,7 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->save($this->request->data)) {
-				return $this->flash(__('The user has been saved.'), array('action' => 'index'));
+				return $this->flash(__('The user has been saved.'), array('admin' => true, 'controller' => 'users', 'action' => 'index'));
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
