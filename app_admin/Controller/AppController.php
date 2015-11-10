@@ -79,10 +79,10 @@ class AppController extends Controller {
  */
 	public function beforeFilter() {
 		// Set layout
-//		if (isset($this->params['plugin']) && $this->params['plugin'] === 'acl') {
-//			$this->layout = 'default';
-//		} elseif (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
-//			$this->layout = 'admin';
-//		}
+		if (isset($this->params['plugin']) && $this->params['plugin'] === 'acl') {
+			$this->layout = 'default';
+		} elseif (strstr($_SERVER['SCRIPT_NAME'], 'admin')) {
+			$this->layout = 'admin';
+		}
 	}
 }

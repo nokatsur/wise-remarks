@@ -36,7 +36,7 @@ if (!defined('DS')) {
  *
  */
 if (!defined('ROOT')) {
-	define('ROOT', dirname(dirname(dirname(__FILE__))));
+	define('ROOT', dirname(dirname(dirname(dirname(__FILE__)))));
 }
 
 /**
@@ -44,7 +44,7 @@ if (!defined('ROOT')) {
  *
  */
 if (!defined('APP_DIR')) {
-	define('APP_DIR', basename(dirname(dirname(__FILE__))));
+	define('APP_DIR', 'app_admin');
 }
 
 /**

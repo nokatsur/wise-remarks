@@ -13,7 +13,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function admin_login() {
+	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				return $this->redirect($this->Auth->redirect());
