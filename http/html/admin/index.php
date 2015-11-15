@@ -44,7 +44,7 @@ if (!defined('ROOT')) {
  *
  */
 if (!defined('APP_DIR')) {
-	define('APP_DIR', 'app_admin');
+	define('APP_DIR', 'app');
 }
 
 /**
