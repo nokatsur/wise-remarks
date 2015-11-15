@@ -59,11 +59,6 @@ class AppController extends Controller {
 				'admin' => true,
 			)
 		),
-		'flash' => array(
-			'element' => null,
-			'params' => array(),
-			'key' => 'flash',
-		),
 		'Flash',
 		'Paginator',
 		'RequestHandler',

@@ -21,7 +21,7 @@
 	<head>
 		<?php echo $this->Html->charset(); ?>
 		<title>
-			<?php echo __($this->action) . __(': The most enhanced resume creator'); ?>
+			<?php echo __($this->action) . __(': Create your own wise_remark list!'); ?>
 		</title>
 		<?php
 		echo $this->Html->meta('icon');
@@ -31,8 +31,8 @@
 		?>
 	</head>
 	<body>
-		<span><?php echo $this->Session->flash(); ?></span>
-		<span><?php echo $this->Session->flash('auth'); ?></span>
+		<span><?php echo $this->Flash->render(); ?></span>
+		<span><?php echo $this->Flash->render('auth'); ?></span>
 
 		<?php echo $this->fetch('content'); ?>
 
