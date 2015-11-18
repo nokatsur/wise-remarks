@@ -28,7 +28,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function admin_logout() {
+	public function logout() {
 		$this->redirect($this->Auth->logout());
 	}
 
@@ -37,7 +37,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
+	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}

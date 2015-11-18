@@ -7,7 +7,7 @@
 			<div class="panel-body">
 				<?php
 				echo $this->Form->create('User', array(
-					'action' => 'admin_login',
+					'action' => 'login',
 					'role' => 'form',
 					'inputDefaults' => array(
 						'label' => false,

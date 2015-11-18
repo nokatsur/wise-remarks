@@ -46,17 +46,14 @@ class AppController extends Controller {
 			'loginAction' => array(
 				'controller' => 'users',
 				'action' => 'login',
-				'admin' => true,
 			),
 			'logoutRedirect' => array(
 				'controller' => 'users',
 				'action' => 'login',
-				'admin' => true,
 			),
 			'loginRedirect' => array(
 				'controller' => 'users',
 				'action' => 'index',
-				'admin' => true,
 			)
 		),
 		'Flash',
