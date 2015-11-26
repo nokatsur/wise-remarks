@@ -46,14 +46,17 @@ class AppController extends Controller {
 			'loginAction' => array(
 				'controller' => 'users',
 				'action' => 'login',
+				'admin' => true
 			),
 			'logoutRedirect' => array(
 				'controller' => 'users',
 				'action' => 'login',
+				'admin' => true
 			),
 			'loginRedirect' => array(
 				'controller' => 'users',
 				'action' => 'index',
+				'admin' => true
 			)
 		),
 		'Flash',
@@ -73,7 +76,7 @@ class AppController extends Controller {
 		// Set layout
 		if (isset($this->params['plugin']) && $this->params['plugin'] === 'acl') {
 			$this->layout = 'default';
-		} elseif (strstr($_SERVER['SCRIPT_NAME'], 'admin')) {
+		} elseif ($this->request->params['prefix'] === 'admin') {
 			$this->layout = 'admin';
 		}
 	}

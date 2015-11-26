@@ -25,12 +25,13 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	if (strstr($_SERVER['SCRIPT_NAME'], '/admin/index')) {
-		Router::connect('/', array('controller' => 'users', 'action' => 'login'));
+		Router::connect('/', array('controller' => 'users', 'action' => 'login', 'admin' => true));
+		Router::connect('/:controller/:action/*', array('admin' => true));
 	}
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	// Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
