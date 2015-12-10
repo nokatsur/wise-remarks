@@ -1,54 +1,99 @@
-<div class="users index">
-	<h2><?php echo __('Users'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($users as $user): ?>
-	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
+<div id="wrapper">
+
+	<?php echo $this->element('nav'); ?>
+
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header"><?php echo __('Users'); ?></h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<?php echo __('List Users'); ?>
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="dataTable_wrapper">
+							<table class="table table-bordered table-hover" id="dataTables-example">
+								<thead>
+									<tr>
+										<th><?php echo $this->Paginator->sort('id'); ?></th>
+										<th><?php echo $this->Paginator->sort('username'); ?></th>
+										<th><?php echo $this->Paginator->sort('created'); ?></th>
+										<th><?php echo $this->Paginator->sort('modified'); ?></th>
+										<th><?php echo __('Actions'); ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($users as $user): ?>
+										<tr>
+											<td nowrap><?php echo h($user['User']['id']); ?>&nbsp;</td>
+											<td nowrap><?php echo h($user['User']['username']); ?>&nbsp;</td>
+											<td nowrap><?php echo h($user['User']['created']); ?>&nbsp;</td>
+											<td nowrap><?php echo h($user['User']['modified']); ?>&nbsp;</td>
+											<td nowrap style="text-align: center;">
+												<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id']), array('class' => 'btn btn-default')); ?>
+												<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-default')); ?>
+												<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-default'), __('Are you sure you want to delete "%s"?', $user['User']['username'])); ?>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
 	</div>
+	<!-- /#page-wrapper -->
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Remarks'), array('controller' => 'remarks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Remark'), array('controller' => 'remarks', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<!-- /#wrapper -->
+
+<?php $this->start('css'); ?>
+<!-- DataTables CSS -->
+<?= $this->Html->css('/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap') ?>
+<!-- DataTables Responsive CSS -->
+<?= $this->Html->css('/sb-admin/bower_components/datatables-responsive/css/dataTables.responsive') ?>
+<?php $this->end(); ?>
+
+<?php $this->start('script'); ?>
+<!-- DataTables JavaScript -->
+<?= $this->Html->script('/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min') ?>
+<?= $this->Html->script('/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min') ?>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+	$(document).ready(function () {
+		$('#dataTables-example').DataTable({
+			responsive: true,
+			"language": {
+				"sProcessing": "処理中...",
+				"sLengthMenu": "_MENU_ 件表示",
+				"sZeroRecords": "データはありません。",
+				"sInfo": " _TOTAL_ 件中 _START_ から _END_ まで表示",
+				"sInfoEmpty": " 0 件中 0 から 0 まで表示",
+				"sInfoFiltered": "（全 _MAX_ 件より抽出）",
+				"sInfoPostFix": "",
+				"sSearch": "検索:",
+				"sUrl": "",
+				"oPaginate": {
+					"sFirst": "先頭",
+					"sPrevious": "前",
+					"sNext": "次",
+					"sLast": "最終"
+				}
+			}
+		});
+	});
+</script>
+<?php $this->end();
