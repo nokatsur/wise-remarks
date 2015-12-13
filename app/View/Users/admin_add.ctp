@@ -1,21 +1,61 @@
-<div class="users form">
-<?php echo $this->Form->create('User'); ?>
-	<fieldset>
-		<legend><?php echo __('Admin Add User'); ?></legend>
-	<?php
-		echo $this->Form->input('username');
-		echo $this->Form->input('password');
-		echo $this->Form->input('email');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<div id="wrapper">
 
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Remarks'), array('controller' => 'remarks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Remark'), array('controller' => 'remarks', 'action' => 'add')); ?> </li>
-	</ul>
+	<?php echo $this->element('nav'); ?>
+
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header"><?php echo __('Add User'); ?></h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<?php echo __('User'); ?>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-6">
+								<?php
+								echo $this->Form->create('User', array(
+									'action' => 'admin_add',
+									'role' => 'form',
+									'inputDefaults' => array(
+										'legend' => false,
+										'required' => false,
+										'class' => 'form-control',
+										'div' => array(
+											'class' => 'form-group'
+										),
+									),
+								));
+								?>
+								<?php
+								echo $this->Form->input('username');
+								echo $this->Form->input('password');
+								echo $this->Form->button(__('Submit'), array('type' => 'submit', 'class' => 'btn btn-default'));
+								echo $this->Form->button(__('Reset'), array('type' => 'reset', 'class' => 'btn btn-default'));
+								echo $this->Form->end();
+								?>
+							</div>
+							<!-- /.col-lg-6 (nested) -->
+						</div>
+						<!-- /.row (nested) -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg- -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
+
 </div>
+<!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->

@@ -53,4 +53,3 @@
 	</div>
 </div>
 </div>
-<?php echo $this->element('common');

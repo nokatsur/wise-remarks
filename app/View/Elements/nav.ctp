@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+		<a class="navbar-brand" href="/"><?= __('WISE REMARKS') ?></a>
 	</div>
 	<!-- /.navbar-header -->
 
@@ -236,6 +236,18 @@
 					<!-- /input-group -->
 				</li>
 				<li>
+					<a><?php echo __('Wise Remark') . '<span class="fa arrow"></span>'; ?></a>
+					<ul class="nav nav-second-level">
+						<li>
+							<?php echo $this->Html->link(__('List Wise Remarks'), array('controller' => 'remarks', 'action' => 'index')); ?>
+						</li>
+						<li>
+							<?php echo $this->Html->link(__('New Wise Remarks'), array('controller' => 'remarks', 'action' => 'add')); ?>
+						</li>
+					</ul>
+					<!-- /.nav-second-level -->
+				</li>
+				<li>
 					<a><?php echo __('User') . '<span class="fa arrow"></span>'; ?></a>
 					<ul class="nav nav-second-level">
 						<li>
@@ -247,42 +259,6 @@
 					</ul>
 					<!-- /.nav-second-level -->
 				</li>
-				<li>
-					<a><?php echo __('Group') . '<span class="fa arrow"></span>'; ?></a>
-					<ul class="nav nav-second-level">
-						<li>
-							<?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?>
-						</li>
-					</ul>
-					<!-- /.nav-second-level -->
-				</li>
-				<li>
-					<a><?php echo __('Resume') . '<span class="fa arrow"></span>'; ?></a>
-					<ul class="nav nav-second-level">
-						<li>
-							<?php echo $this->Html->link(__('List Resumes'), array('controller' => 'resumes', 'action' => 'index')); ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link(__('New Resume'), array('controller' => 'resumes', 'action' => 'add')); ?>
-						</li>
-					</ul>
-					<!-- /.nav-second-level -->
-				<li>
-					<a><?php echo __('Basic Info') . '<span class="fa arrow"></span>'; ?></a>
-					<ul class="nav nav-second-level">
-						<li>
-							<?php echo $this->Html->link(__('List Basic Infos'), array('controller' => 'basic_infos', 'action' => 'index')); ?>
-						</li>
-						<li>
-							<li><?php echo $this->Html->link(__('New Basic Info'), array('controller' => 'basic_infos', 'action' => 'add')); ?> </li>
-						</li>
-					</ul>
-					<!-- /.nav-second-level -->
-				</li>
-				<li><?php echo $this->Html->link('<i class="fa fa-wrench fa-fw"></i>' . __('Setup Permissions'), array('controller' => 'aros', 'action' => 'ajax_role_permissions', 'plugin' => 'acl', 'admin' => true), array('escapeTitle' => false)); ?> </li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
