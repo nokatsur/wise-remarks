@@ -19,6 +19,17 @@
 					<!-- /.panel-heading -->
 					<div class="panel-body">
 						<div class="dataTable_wrapper">
+							<div class="row">
+								<div class="col-sm-12" style='text-align: left;'>
+									<div id="dataTables-example_filter" class="dataTables_filter">
+										<label style="float: left;"><?= __('Username') ?>:
+											<?= $this->Form->input('username', Configure::read('form.users.username')); ?>
+											<!--<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example">-->
+										</label>
+										<p><button type="button" class="btn btn-default"><?= __('Search') ?></button></p>
+									</div>
+								</div>
+							</div>
 							<table class="table table-bordered table-hover" id="dataTables-example">
 								<thead>
 									<tr>
@@ -65,35 +76,5 @@
 <?= $this->Html->css('/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap') ?>
 <!-- DataTables Responsive CSS -->
 <?= $this->Html->css('/sb-admin/bower_components/datatables-responsive/css/dataTables.responsive') ?>
-<?php $this->end(); ?>
-
-<?php $this->start('script'); ?>
-<!-- DataTables JavaScript -->
-<?= $this->Html->script('/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min') ?>
-<?= $this->Html->script('/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min') ?>
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-	$(document).ready(function () {
-		$('#dataTables-example').DataTable({
-			responsive: true,
-			"language": {
-				"sProcessing": "処理中...",
-				"sLengthMenu": "_MENU_ 件表示",
-				"sZeroRecords": "データはありません。",
-				"sInfo": " _TOTAL_ 件中 _START_ から _END_ まで表示",
-				"sInfoEmpty": " 0 件中 0 から 0 まで表示",
-				"sInfoFiltered": "（全 _MAX_ 件より抽出）",
-				"sInfoPostFix": "",
-				"sSearch": "検索:",
-				"sUrl": "",
-				"oPaginate": {
-					"sFirst": "先頭",
-					"sPrevious": "前",
-					"sNext": "次",
-					"sLast": "最終"
-				}
-			}
-		});
-	});
-</script>
-<?php $this->end();
+<?php
+$this->end();

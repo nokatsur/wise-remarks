@@ -34,8 +34,9 @@
 								));
 								?>
 								<?php
-								echo $this->Form->input('username');
-								echo $this->Form->input('password');
+								echo $this->Form->input('username', Configure::read('form.users.username'));
+								echo $this->Form->input('password', Configure::read('form.users.password'));
+								echo $this->Form->input('email', Configure::read('form.users.email'));
 								echo $this->Form->button(__('Submit'), array('type' => 'submit', 'class' => 'btn btn-default'));
 								echo $this->Form->button(__('Reset'), array('type' => 'reset', 'class' => 'btn btn-default'));
 								echo $this->Form->end();

@@ -115,8 +115,5 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-// Load common settings
-Configure::load('conf_common');
-
-// Load local settings
-Configure::load('conf_local');
+// Load config file
+Configure::load('config');
