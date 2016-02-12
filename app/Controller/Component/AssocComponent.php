@@ -118,15 +118,15 @@ class AssocComponent extends Component {
  */
 	private function __unsetUnusesModel($model) {
 		foreach ($this->{$model}->_associations as $assocType) {
-			$config = $this->assocInfo[$model][$assocType];
+			$config = $this->assocInfo[$model];
 			$uses = $this->controller->uses;
 
-			if (!isset($config) || !is_array($config)) {
+			if (!isset($config[$assocType]) || !is_array($config)) {
 				continue;
 			}
 
-			foreach (array_diff($config, $uses) as $val) {
-				$key = array_search($val, $config);
+			foreach (array_diff($config[$assocType], $uses) as $val) {
+				$key = array_search($val, $config[$assocType]);
 				if ($key !== false) {
 					unset($this->assocInfo[$model][$assocType][$key]);
 				}
