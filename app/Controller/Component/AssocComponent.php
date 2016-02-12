@@ -1,12 +1,15 @@
 <?php
-/*
+/**
  * 動的なモデルのアソシエーションを実行するコンポーネント
  *
- * アソシエーションを生成したいアクション、またはbeforeFilterで
+ * 【使用方法】
+ * １, アソシエーションを生成したいコントローラーのbeforeFilterメソッド内で
  * 『$this->Assoc = $this->Components->load('Assoc');』を記入してください。
  *
- * ※『$this->Assoc  = 』部分はなくても動作しますが、今後の拡張性のため
+ * ２, アソシエーションを開始したいアクション、またはbeforeFilterメソッド内で
+ * 『$this->Assoc->bindModels();』を記入してください。
  *
+ *【注意】
  * DBの設計がCakePHPの規約に従っていることが前提条件ですが、
  * 多少の融通は設定でカバーできます。
  *
@@ -14,6 +17,7 @@
  * かつ、それぞれのforeign_keyが異なる場合。
  * アソシエーションを貼ろうとする対象モデルのprimary_keyが対応できません。
  *
+ * @author Norabal
  */
 class AssocComponent extends Component {
 
@@ -49,9 +53,6 @@ class AssocComponent extends Component {
 	public function startup(Controller $controller) {
 		// コントローラを取得
 		$this->controller = $controller;
-
-		// アソシエーション開始
-		$this->bindModels();
 	}
 
 /**
