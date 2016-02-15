@@ -23,7 +23,7 @@
 								<div class="col-sm-12" style='text-align: left;'>
 									<div id="dataTables-example_filter" class="dataTables_filter">
 										<label style="float: left;"><?= __('Username') ?>:
-											<?= $this->Form->input('username', Configure::read('form.users.username')); ?>
+											<?= $this->Form->input('username', Configure::read('form.User.username')); ?>
 											<!--<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example">-->
 										</label>
 										<p><button type="button" class="btn btn-default"><?= __('Search') ?></button></p>

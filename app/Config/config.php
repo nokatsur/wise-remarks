@@ -17,7 +17,7 @@ define('REQUIRE_MARK', '&nbsp;<span style="color: red;">*</span>');
 
 // フォーム設定
 $config['form'] = array(
-	'users' => array(
+	'User' => array(
 		'username' => array(
 			'between' => REQUIRE_MARK,
 			'maxlength' => 128,

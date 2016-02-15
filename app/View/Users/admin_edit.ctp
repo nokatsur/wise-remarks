@@ -35,9 +35,9 @@
 								?>
 								<?php
 								echo $this->Form->input('id');
-								echo $this->Form->input('username', Configure::read('form.users.username'));
-								echo $this->Form->input('password', Configure::read('form.users.password'));
-								echo $this->Form->input('email', Configure::read('form.users.email'));
+								echo $this->Form->input('username', Configure::read('form.User.username'));
+								echo $this->Form->input('password', Configure::read('form.User.password'));
+								echo $this->Form->input('email', Configure::read('form.User.email'));
 								echo $this->Form->button(__('Update'), array('type' => 'submit', 'class' => 'btn btn-default'));
 								echo $this->Form->button(__('Reset'), array('type' => 'reset', 'class' => 'btn btn-default'));
 								echo $this->Form->end();
