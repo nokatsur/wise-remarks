@@ -33,6 +33,16 @@ $config['form'] = array(
 	)
 );
 
+// アソシエーション情報
+$config['assoc_info'] = array(
+	'Remark' => array(
+		'belongsTo' => array('User')
+	),
+	'User' => array(
+		'hasMany' => array('Remark'),
+	),
+);
+
 $config['jp_pref'] = array(
 	'1' => '北海道', '2' => '青森県', '3' => '岩手県', '4' => '宮城県', '5' => '秋田県',
 	'6' => '山形県', '7' => '福島県', '8' => '茨城県', '9' => '栃木県', '10' => '群馬県',

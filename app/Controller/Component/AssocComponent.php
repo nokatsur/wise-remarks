@@ -2,16 +2,9 @@
 /**
  * 動的なモデルのアソシエーションを実行するコンポーネント
  *
- * 【使用方法】
- * １, アソシエーションを生成したいコントローラーのbeforeFilterメソッド内で
- * 『$this->Assoc = $this->Components->load('Assoc');』を記入してください。
- *
- * ２, アソシエーションを開始したいアクション、またはbeforeFilterメソッド内で
- * 『$this->Assoc->bindModels();』を記入してください。
- *
  *【注意】
  * DBの設計がCakePHPの規約に従っていることが前提条件ですが、
- * 多少の融通は設定でカバーできます。
+ * 多少の融通は$assocInfoの設定でカバーできます。（設定の詳細は公式サイト参照）
  *
  * 不可能なパターンは1つのモデルが２つ以上の別モデルとアソシエーションされ、
  * かつ、それぞれのforeign_keyが異なる場合。
@@ -22,35 +15,41 @@
 class AssocComponent extends Component {
 
 /**
- * アソシエーションの連結情報
+ * アソシエーションの連結設定
  * /app/Configディレクトリ下の設定ファイルに記載して、Configure::readで呼び出すようにする？
  *
  * @var array
  */
-	public $assocInfo = array(
-		'FirstModel' => array(
-			'hasMany' => array('AModel', 'BModel', 'CModel'),
-			'belongsTo' => array('DModel', 'EModel')
-		),
-		'SecondModel' => array(
-			'hasMany' => array(
-				'AModel' => array('foreignKey' => 'foreign_id'),
-				'BModel' => array('foreignKey' => 'foreign_id'),
-			)
-		),
-		'ThirdModel' => array(
-			'belongsTo' => array('FModel')
-		),
-	);
+	public $assocInfo = array();
 
 /**
- * 初期処理
+ * 初期処理 パターン１ 『AppControllerの「public $components」で読み込まれた場合』
+ * コントローラの beforeFilter メソッドの前に呼び出される
+ *
+ * @param type $controller コントローラー
+ * @return void
+ */
+	public function initialize(Controller $controller) {
+		$this->assocInfo = Configure::read('assoc_info');
+
+		// コントローラを取得
+		$this->controller = $controller;
+
+		// アソシエーション開始
+		$this->bindModels();
+	}
+
+/**
+ * 初期処理 パターン２ 『$this->Assoc = $this->Components->load('Assoc');』で読み込まれた場合』
  * コントローラの beforeFilter メソッドの後、アクションハンドラの前に呼び出される
+ * アソシエーションを開始したいアクション内で『$this->Assoc->bindModels();』を実行する
  *
  * @param type $controller コントローラー
  * @return void
  */
 	public function startup(Controller $controller) {
+		$this->assocInfo = Configure::read('assoc_info');
+
 		// コントローラを取得
 		$this->controller = $controller;
 	}
@@ -121,11 +120,21 @@ class AssocComponent extends Component {
 			$config = $this->assocInfo[$model];
 			$uses = $this->controller->uses;
 
+			// 設定が存在しない場合
 			if (!isset($config[$assocType]) || !is_array($config)) {
 				continue;
 			}
 
-			foreach (array_diff($config[$assocType], $uses) as $val) {
+			// 設定がモデル名のみでなく、foreign_keyやdependentなどのオプションまで
+			// 記載されていた場合は、モデル名のみ取り出すようにする
+			if (Hash::dimensions($config[$assocType]) > 1) {
+				$assocModel = array_keys($config[$assocType]);
+			} else {
+				$assocModel = $config[$assocType];
+			}
+
+			// usesプロパティで使用されていないモデルを削除
+			foreach (array_diff($assocModel, $uses) as $val) {
 				$key = array_search($val, $config[$assocType]);
 				if ($key !== false) {
 					unset($this->assocInfo[$model][$assocType][$key]);

@@ -62,7 +62,8 @@ class AppController extends Controller {
 		'Flash',
 		'Paginator',
 		'RequestHandler',
-		'DebugKit.Toolbar'
+		'DebugKit.Toolbar',
+		'Assoc'
 	);
 
 	public $helpers = array('Html', 'Form', 'Session');
