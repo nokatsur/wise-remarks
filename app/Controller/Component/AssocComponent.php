@@ -16,7 +16,7 @@ class AssocComponent extends Component {
 
 /**
  * アソシエーションの連結設定
- * /app/Configディレクトリ下の設定ファイルに記載して、Configure::readで呼び出すようにする？
+ * app/Config/config.phpのアソシエーション情報を受取る
  *
  * @var array
  */
