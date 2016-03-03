@@ -61,6 +61,8 @@ class AssocComponent extends Component {
  * @see http://book.cakephp.org/2.0/ja/models/associations-linking-models-together.html#dynamic-associations
  */
 	public function bindModels() {
+//ここでuseされているmodelがない場合、処理終了する。
+//modelがない場合、foreachでwarningが発生する恐れあり,
 		// 処理中のコントローラが利用している各モデルへアソシエーションを張る
 		foreach ($this->controller->uses as $model) {
 			// 連結情報未記入のモデルはスキップ
