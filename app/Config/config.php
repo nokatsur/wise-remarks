@@ -55,3 +55,20 @@ $config['jp_pref'] = array(
 	'41' => '佐賀県', '42' => '長崎県', '43' => '熊本県', '44' => '大分県', '45' => '宮崎県',
 	'46' => '鹿児島県', '47' => '沖縄県'
 );
+
+switch (ENVIRONMENT) {
+
+	case 'local':
+		define('TWITTER_CONSUMER_KEY', '6lwtDAC3FOs5k2a7CPdPyDAOY');
+		define('TWITTER_CONSUMER_SECRET', 'mvMiuUZqzKePQXocor0B8BGKB4mYrAtBZFkcaXcceidp2zT0if');
+		define('TWITTER_ACCESS_TOKEN', '726292484607762432-XVi2EFBBKWBaI5OUD2lg5hwJpA2L0RQ');
+		define('TWITTER_ACCESS_TOKEN_SECRET', 'RY4XUv6uxF7PLJzlp2eOF6k7eRPyY6EsdaEUKkRtBVKX2');
+		break;
+	case 'development':
+	case 'test':
+		define('TWITTER_CONSUMER_KEY', '6lwtDAC3FOs5k2a7CPdPyDAOY');
+		define('TWITTER_CONSUMER_SECRET', 'mvMiuUZqzKePQXocor0B8BGKB4mYrAtBZFkcaXcceidp2zT0if');
+		define('TWITTER_ACCESS_TOKEN', '726292484607762432-XVi2EFBBKWBaI5OUD2lg5hwJpA2L0RQ');
+		define('TWITTER_ACCESS_TOKEN_SECRET', 'RY4XUv6uxF7PLJzlp2eOF6k7eRPyY6EsdaEUKkRtBVKX2');
+		break;
+}
